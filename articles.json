@@ -1,0 +1,21 @@
+{
+    "articles": [
+      {
+        "id": 1,
+        "title": "文章标题1",
+        "cover": "https://via.placeholder.com/300x200",
+        "content": "文章简介1...",
+        "date": "2023-04-01",
+        "likes": 10
+      },
+      {
+        "id": 2,
+        "title": "文章标题2",
+        "cover": "https://via.placeholder.com/300x200",
+        "content": "文章简介2...",
+        "date": "2023-04-02",
+        "likes": 15
+      }
+    ]
+  }
+  

@@ -1,0 +1,40 @@
+{
+  "result": [
+    {
+      "username": "1",
+      "password": "1",
+      "rememberMe": true,
+      "id": 1
+    },
+    {
+      "username": "1",
+      "password": "1",
+      "rememberMe": false,
+      "id": 2
+    },
+    {
+      "username": "1",
+      "password": "1",
+      "rememberMe": false,
+      "id": 3
+    },
+    {
+      "username": "1",
+      "password": "1",
+      "rememberMe": false,
+      "id": 4
+    },
+    {
+      "username": "1",
+      "password": "1",
+      "rememberMe": false,
+      "id": 5
+    },
+    {
+      "username": "1234",
+      "password": "1234",
+      "rememberMe": true,
+      "id": 6
+    }
+  ]
+}
