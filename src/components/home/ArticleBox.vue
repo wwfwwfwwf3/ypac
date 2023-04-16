@@ -3,7 +3,6 @@
     <el-row gutter="20">
       <el-col :span="8" v-for="article in articles" :key="article.id">
         <el-card :body-style="{ padding: '0' }">
-          <router-link :to="'/article/' + article.id" >
           <img :src="article.cover" alt="封面图片" class="cover" />
           <div class="info">
             <p>
@@ -11,13 +10,10 @@
               {{ article.title }}
             </router-link>
             </p>
-            
-
             <p>{{ article.content }}</p>
             <p>上传日期：{{ article.date }}</p>
             <p>点赞数：{{ article.likes }}</p>
           </div>
-        </router-link>
         </el-card>
       </el-col>
     </el-row>
@@ -35,8 +31,9 @@ export default {
   },
   methods: {
     fetchArticles() {
+      var address="http://localhost:3000/articles";
       axios
-        .get("http://localhost:3000/articles")
+        .get(address)
         .then((response) => {
           this.articles = response.data;
           console.log(response.data);

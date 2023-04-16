@@ -5,7 +5,7 @@ import ElementPlus from 'element-plus'
 import 'element-plus/theme-chalk/index.css'
 import  CKEditor  from '@ckeditor/ckeditor5-vue';
 import router from './router';
-
+import './main.css'
 
 const app = createApp(App)
 app.use(ElementPlus)

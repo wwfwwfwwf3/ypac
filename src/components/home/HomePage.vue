@@ -2,12 +2,6 @@
   <div>
     <carousel-box></carousel-box>
     <article-box></article-box>
-    <router-view></router-view>
-    <h1>
-      <router-link to="/upload">1111111111</router-link>
-      
-
-    </h1>
   </div>
 </template>
 

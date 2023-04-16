@@ -8,17 +8,17 @@
     >
       
     
-      <el-menu-item index="HomePage" class="home" v-slot="{ active}">
-        <router-link to="/" :class="{ 'is-active': active }">Home</router-link>
+      <el-menu-item index="HomePage" class="home" >
+        <router-link to="/" >Home</router-link>
       </el-menu-item>
-      <el-menu-item index="CategoryPage" class="category" v-slot="{ active}">
-        <router-link to="/category" :class="{ 'is-active': active }">Category</router-link>
+      <el-menu-item index="CategoryPage" class="category" >
+        <router-link to="/category" >Category</router-link>
       </el-menu-item>
-      <el-menu-item index="UploadPage" class="upload" v-slot="{ active}">
-        <router-link to="/upload" :class="{ 'is-active': active }">Upload</router-link>
+      <el-menu-item index="UploadPage" class="upload">
+        <router-link to="/upload" >Upload</router-link>
       </el-menu-item>
-      <el-menu-item index="LoginPage" class="login" v-slot="{ active}">
-        <router-link to="/login" :class="{ 'is-active': active }">Login</router-link>
+      <el-menu-item index="LoginPage" class="login">
+        <router-link to="/login" >Login</router-link>
       </el-menu-item>
     </el-menu>
   </el-header>
@@ -63,4 +63,5 @@ export default {
 .login {
   width: 10%;
 }
+
 </style>
