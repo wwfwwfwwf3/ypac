@@ -20,7 +20,7 @@
   </div>
 </template>
 <script>
-import axios from "axios";
+import apiService from '@/components/utils/ApiService.js'
 
 export default {
   name: "ArticleBox",
@@ -30,17 +30,9 @@ export default {
     };
   },
   methods: {
-    fetchArticles() {
-      var address="http://localhost:3000/articles";
-      axios
-        .get(address)
-        .then((response) => {
-          this.articles = response.data;
-          console.log(response.data);
-        })
-        .catch((error) => {
-          console.error("Error fetching articles:", error);
-        });
+     async fetchArticles() {
+     
+      this.articles = await apiService.fetchArticles();
     },
   },
   mounted() {

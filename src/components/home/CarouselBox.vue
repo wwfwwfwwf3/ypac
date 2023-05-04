@@ -1,9 +1,7 @@
 <template>
 <div class="carousel-container">
     <el-carousel type="card" height="200px" width="80%">
-      <!-- <el-carousel-item v-for="(item, index) in slideList" :key="index">
-        <img :src="item.imageUrl" :alt="item.title" class="carousel-img"/>
-      </el-carousel-item> -->
+      
       <el-carousel-item>
         <img src="https://via.placeholder.com/800x200" alt="slide1" />
       </el-carousel-item>

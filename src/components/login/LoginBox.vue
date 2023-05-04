@@ -82,20 +82,6 @@ export default {
         }
       });
     },
-
-    //尝试json-server用的代码
-    // try {
-    //   const response = await axios.post(
-    //     "http://localhost:3000/result",
-    //     this.loginForm
-    //   );
-    //   this.posts = response.data;
-    //   console.log("OK!");
-    //   console.log(response.data);
-    // } catch (error) {
-    //   console.error("Error fetching data:", error);
-    // }
-    // },
   },
 };
 </script>

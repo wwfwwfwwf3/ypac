@@ -20,9 +20,9 @@
         </el-form-item>
         <el-form-item label="封面图片">
           <el-upload
-            action="/api/upload/cover" 
+            action="/api/upload/cover"
             accept="image/*"
-            :on-success="handleUploadSuccess" 
+            :on-success="handleUploadSuccess"
           >
             <el-button type="primary">点击上传</el-button>
           </el-upload>
@@ -46,7 +46,7 @@
           </el-upload>
         </el-form-item>
         <el-form-item>
-          <el-button type="primary" @click="onSubmit">提交</el-button> 
+          <el-button type="primary" @click="onSubmit">提交</el-button>
         </el-form-item>
       </el-form>
     </el-card>
@@ -56,6 +56,7 @@
 <script>
 import { CKEditor } from "@ckeditor/ckeditor5-vue";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
+import axios from "axios";
 
 export default {
   name: "UploadBox",
@@ -75,8 +76,30 @@ export default {
     };
   },
   methods: {
-    onSubmit() {
-      
+    async onSubmit() {
+      try {
+        var address = "http://localhost:3001/uploadEvent";
+        const response = await axios.post(address, this.formData);
+        if (response.status === 200 || response.status === 201) {
+          this.$message.success("活动已成功提交");
+          this.resetForm();
+        } else {
+          this.$message.error("提交失败，请稍后重试");
+          console.error("response.status==" + response.status);
+        }
+      } catch (error) {
+        console.error("Error:", error);
+        this.$message.error("提交失败，请稍后重试");
+      }
+    },
+    resetForm() {
+      this.formData = {
+        title: "",
+        summary: "",
+        cover: "",
+        content: "",
+        videoUrl: "",
+      };
     },
     handleUploadSuccess(response, file) {
       this.formData.cover = URL.createObjectURL(file.raw);
