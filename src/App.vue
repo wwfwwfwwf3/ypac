@@ -30,12 +30,12 @@ export default {
     };
   },
 
-  watch: {
-    $route(to) {
-      this.activeIndex = to.name;
-      console.log(to.name);
-    },
-  },
+  // watch: {
+  //   $route(to) {
+  //     this.activeIndex = to.name;
+  //     console.log(to.name);
+  //   },
+  // },
 
 
   methods: {

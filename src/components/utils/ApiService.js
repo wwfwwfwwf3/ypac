@@ -14,6 +14,7 @@ class ApiService {
         const address = "http://localhost:3000/articles";
         try {
             const response = await axios.get(address);
+            console.log("fetchArticles:"+response.data+'\n');
             return response.data;
         } catch (error) {
             console.error("Error fetching articles:", error);
@@ -42,7 +43,26 @@ class ApiService {
             }
         });
     }
-    // Add other API methods here
+    
+    async fetchArticle(id) {
+        const address = `http://localhost:3000/articles/${id}`;
+        try {
+          const response = await axios.get(address);
+          return response.data;
+        } catch (error) {
+          console.error("Error fetching article:", error);
+        }
+      }
+
+      async fetchComments(articleId) {
+        const address = `http://localhost:3000/comments?articleId=${articleId}`;
+        try {
+          const response = await axios.get(address);
+          return response.data;
+        } catch (error) {
+          console.error("Error fetching comments:", error);
+        }
+      }
 }
 
 const apiService = new ApiService();

@@ -1,0 +1,21 @@
+[
+    {
+      "id": 1,
+      "articleId": 1,
+      "username": "用户1",
+      "content": "评论内容1"
+    },
+    {
+      "id": 2,
+      "articleId": 1,
+      "username": "用户2",
+      "content": "评论内容2"
+    },
+    {
+      "id": 3,
+      "articleId": 2,
+      "username": "用户3",
+      "content": "评论内容3"
+    }
+  ]
+  

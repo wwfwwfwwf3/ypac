@@ -1,6 +1,7 @@
 <template>
   <div>
     <h2>{{ article.title }}</h2>
+    <video v-if="article.videoUrl" :src="article.videoUrl" controls></video>
     <div v-html="article.content"></div>
     <div>
       <el-button icon="el-icon-thumb">点赞</el-button>
@@ -24,8 +25,9 @@
     </div>
   </div>
 </template>
-<script>
+<script> 
 import axios from "axios";
+import apiService from "@/components/utils/ApiService.js";
 
 export default {
   name: "ArticleContent",
@@ -37,16 +39,7 @@ export default {
     };
   },
   methods: {
-    // ...
-    fetchComments() {
-      axios.get(`http://localhost:3000/articles/${this.$route.params.id}/comments`)
-        .then(response => {
-          this.comments = response.data;
-        })
-        .catch(error => {
-          console.error('Error fetching comments:', error);
-        });
-    },
+    
     submitComment() {
       axios.post(`http://localhost:3000/articles/${this.$route.params.id}/comments`, {
         content: this.newComment
@@ -58,11 +51,22 @@ export default {
         .catch(error => {
           console.error('Error submitting comment:', error);
         });
-    }
+    },
+
+    async fetchArticle() {
+      this.article = await apiService.fetchArticle(this.$route.params.id);
+      console.log("article=============",this.article);
+    },
+    async fetchComments() {
+      this.comments = await apiService.fetchComments(this.$route.params.id);
+    },
+    async fetchData() {
+      await this.fetchArticle();
+      await this.fetchComments();
+    },
   },
   mounted() {
-    this.fetchArticle();
-    this.fetchComments();
+    this.fetchData();
   },
 }
 </script>

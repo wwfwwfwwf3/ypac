@@ -7,8 +7,8 @@
           <div class="info">
             <p>
               <router-link :to="'/article/' + article.id">
-              {{ article.title }}
-            </router-link>
+                {{ article.title }}
+              </router-link>
             </p>
             <p>{{ article.content }}</p>
             <p>上传日期：{{ article.date }}</p>
@@ -20,7 +20,7 @@
   </div>
 </template>
 <script>
-import apiService from '@/components/utils/ApiService.js'
+import apiService from "@/components/utils/ApiService.js";
 
 export default {
   name: "ArticleBox",
@@ -30,8 +30,7 @@ export default {
     };
   },
   methods: {
-     async fetchArticles() {
-     
+    async fetchArticles() {
       this.articles = await apiService.fetchArticles();
     },
   },
