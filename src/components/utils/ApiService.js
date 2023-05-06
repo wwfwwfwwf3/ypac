@@ -1,6 +1,9 @@
 // ApiService.js
 import axios from "axios";
 
+const baseUrl1 = 'http://localhost:3000';
+// const baseUrl2 = 'http://172.20.10.2:8000';
+
 class ApiService {
     constructor() {
         if (ApiService.instance) {
@@ -11,43 +14,42 @@ class ApiService {
     }
 
     async fetchArticles() {
-        const address = "http://localhost:3000/articles";
+        // const address = baseUrl2+"/cms/ypac/content_list/ ";
+        const address=baseUrl1+"/articles";
         try {
             const response = await axios.get(address);
-            console.log("fetchArticles:"+response.data+'\n');
+            console.log("fetchArticles:",response.data,'\n');
             return response.data;
         } catch (error) {
+            console.log("Error====================================");
             console.error("Error fetching articles:", error);
         }
     }
 
-    async submitForm(formName) {
-        var address = "http://172.20.10.4:8000/denglu/ypac/user_login/";
-        this.$refs[formName].validate((valid) => {
-            if (valid) {
-                axios
-                    .post(address, this.loginForm)
-                    .then((response) => {
-                        console.log("Success");
-                        console.log(response.data);
-                        this.$router.push({ path: '/' });
-                    })
-                    .catch((error) => {
-                        console.log("Error");
-                        console.log(error);
-                    });
-                console.log("submit!");
-            } else {
-                console.log("error submit!!");
-                return false;
-            }
-        });
-    }
+    async login(credentials) {
+        try {
+          const response = await axios.post(`${baseUrl1}/users`, credentials);
+          console.log("LoginInfo=====================",response.data,'\n');
+          if (response.data) {
+            return  response.data ;
+          } else {
+            throw new Error('No response==========================');
+          }
+        } catch (error) {
+          console.error('登录失败：', error);
+          throw error;
+        }
+      }
     
     async fetchArticle(id) {
-        const address = `http://localhost:3000/articles/${id}`;
+        const address = baseUrl1+`/articles/${id}`;
+        // const address=baseUrl2+`/cms/ypac/content_detail/`
         try {
+          // const response = await axios.post(address, {
+          //   "content_id": id
+          // });
           const response = await axios.get(address);
+          console.log("fetchArticle===============================",response.data,'\n');
           return response.data;
         } catch (error) {
           console.error("Error fetching article:", error);
@@ -55,7 +57,7 @@ class ApiService {
       }
 
       async fetchComments(articleId) {
-        const address = `http://localhost:3000/comments?articleId=${articleId}`;
+        const address = baseUrl1+`/articles/${articleId}/comments`;
         try {
           const response = await axios.get(address);
           return response.data;

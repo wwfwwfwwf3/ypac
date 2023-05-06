@@ -10,7 +10,6 @@
       <el-main>
         <router-view></router-view>
       </el-main>
-      
     </el-container>
   </div>
 </template>
@@ -27,22 +26,33 @@ export default {
   data() {
     return {
       activeIndex: "HomePage",
+      loggedInUser: null,
     };
   },
-
-  // watch: {
-  //   $route(to) {
-  //     this.activeIndex = to.name;
-  //     console.log(to.name);
-  //   },
-  // },
-
 
   methods: {
     handleSelect(selectedIndex) {
       this.activeIndex = selectedIndex;
       this.$router.push({ name: selectedIndex });
     },
+
+    setLoggedInUser(user) {
+      this.loggedInUser = user;
+      localStorage.setItem("loggedInUser", JSON.stringify(user));
+    },
+  },
+
+  computed: {
+    loggedInUsername() {
+      return this.loggedInUser ? this.loggedInUser.username : "";
+    },
+  },
+
+  mounted() {
+    const loggedInUser = localStorage.getItem("loggedInUser");
+    if (loggedInUser) {
+      this.loggedInUser = JSON.parse(loggedInUser);
+    }
   },
 };
 </script>

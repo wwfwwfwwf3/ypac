@@ -1,18 +1,18 @@
 <template>
   <div>
     <el-row gutter="20">
-      <el-col :span="8" v-for="article in articles" :key="article.id">
+      <el-col :span="8" v-for="article in articles" :key="article.content_id">
         <el-card :body-style="{ padding: '0' }">
-          <img :src="article.cover" alt="封面图片" class="cover" />
+          <img :src="'http://172.20.10.2:8000'+article.imageCover" alt="cover image" class="cover" />
           <div class="info">
             <p>
-              <router-link :to="'/article/' + article.id">
+              <router-link :to="'/article/' + article.content_id">
                 {{ article.title }}
               </router-link>
             </p>
-            <p>{{ article.content }}</p>
-            <p>上传日期：{{ article.date }}</p>
-            <p>点赞数：{{ article.likes }}</p>
+            <p>{{ article.introduction }}</p>
+            <p>date：{{ article.pub_date }}</p>
+            <p>likes：{{ article.likeNumber }}</p>
           </div>
         </el-card>
       </el-col>

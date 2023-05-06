@@ -36,7 +36,7 @@
 </template>
 
 <script>
-import axios from "axios";
+import apiService from "../utils/ApiService.js";
 export default {
   components: {
     // axios,
@@ -61,31 +61,25 @@ export default {
 
   methods: {
     async submitForm(formName) {
-      var address = "http://172.20.10.4:8000/denglu/ypac/user_login/";
-      this.$refs[formName].validate((valid) => {
+      this.$refs[formName].validate(async (valid) => {
         if (valid) {
-          axios
-            .post(address, this.loginForm)
-            .then((response) => {
-              console.log("Success");
-              console.log(response.data);
-              this.$router.push({ path: '/' });
-            })
-            .catch((error) => {
-              console.log("Error");
-              console.log(error);
-            });
-          console.log("submit!");
+          try {
+            const response = await apiService.login(this.loginForm);
+            console.log('登录成功：', response);
+            this.$root.setLoggedInUser(response);
+            this.$router.push({ path: '/' });
+          } catch (error) {
+            console.error('登录失败：', error);
+          }
         } else {
-          console.log("error submit!!");
+          console.error('表单验证失败');
           return false;
         }
       });
-    },
+    }, 
   },
 };
 </script>
-
 <style scoped>
 .login-container {
   display: flex;

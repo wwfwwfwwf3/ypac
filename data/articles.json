@@ -1,23 +1,68 @@
-
-    [
+[
+  {
+    "content_id": 1,
+    "title": "示例文章1",
+    "introduction": "这是示例文章1的简介",
+    "pub_date": "2023-05-01",
+    "likeNumber": 10,
+    "imageCover": "https://via.placeholder.com/350x150",
+    "text": "<p>这是文章内容。</p>",
+    "video": "https://www.w3schools.com/html/mov_bbb.mp4",
+    "comments": [
       {
         "id": 1,
-        "title": "文章标题1",
-        "cover": "https://via.placeholder.com/300x200",
-        "content": "文章内容1...",
-        "date": "2023-04-01",
-        "likes": 10,
-        "videoUrl": "https://www.w3schools.com/html/movie.mp4"
+        "username": "用户1",
+        "content": "这是一条评论"
       },
       {
         "id": 2,
-        "title": "文章标题2",
-        "cover": "https://via.placeholder.com/300x200",
-        "content": "文章内容2...",
-        "date": "2023-04-02",
-        "likes": 15,
-        "videoUrl": "https://www.w3schools.com/html/movie.mp4"
+        "username": "用户2",
+        "content": "这是另一条评论"
       }
     ]
-  
-  
+  },
+  {
+    "content_id": 2,
+    "title": "示例文章2",
+    "introduction": "这是示例文章2的简介",
+    "pub_date": "2023-05-02",
+    "likeNumber": 20,
+    "imageCover": "https://via.placeholder.com/350x150",
+    "text": "<p>这是文章内容。</p>",
+    "video": "https://www.w3schools.com/html/mov_bbb.mp4",
+    "comments": [
+      {
+        "id": 3,
+        "username": "用户3",
+        "content": "这是一条评论"
+      },
+      {
+        "id": 4,
+        "username": "用户4",
+        "content": "这是另一条评论"
+      }
+    ]
+  },
+  {
+    "content_id": 3,
+    "title": "示例文章3",
+    "introduction": "这是示例文章3的简介",
+    "pub_date": "2023-05-03",
+    "likeNumber": 30,
+    "imageCover": "https://via.placeholder.com/350x150",
+    "text": "<p>这是文章内容。</p>",
+    "video": "https://www.w3schools.com/html/mov_bbb.mp4",
+    "comments": [
+      {
+        "id": 5,
+        "username": "用户5",
+        "content": "这是一条评论"
+      },
+      {
+        "id": 6,
+        "username": "用户6",
+        "content": "这是另一条评论"
+      }
+    ]
+  }
+]

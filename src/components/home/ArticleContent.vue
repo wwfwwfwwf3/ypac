@@ -1,11 +1,11 @@
 <template>
   <div>
     <h2>{{ article.title }}</h2>
-    <video v-if="article.videoUrl" :src="article.videoUrl" controls></video>
-    <div v-html="article.content"></div>
+    <video v-if="article.video" :src="article.video" controls></video>
+    <div v-html="article.text"></div>
     <div>
-      <el-button icon="el-icon-thumb">点赞</el-button>
-      <el-button icon="el-icon-share">分享</el-button>
+      <el-button icon="el-icon-thumb"> 点赞</el-button>
+      <el-button icon="el-icon-share"> 分享</el-button>
       <el-button icon="el-icon-gift">打赏</el-button>
     </div>
     <div>
@@ -29,7 +29,9 @@
 import axios from "axios";
 import apiService from "@/components/utils/ApiService.js";
 
+
 export default {
+  
   name: "ArticleContent",
   data() {
     return {
