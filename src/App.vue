@@ -60,5 +60,6 @@ export default {
 <style>
 #app {
   width: 100%;
+  background-image: linear-gradient(-225deg, #FFFEFF 0%, #D7FFFE 100%);
 }
 </style>

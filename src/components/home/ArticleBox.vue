@@ -3,7 +3,11 @@
     <el-row gutter="20">
       <el-col :span="8" v-for="article in articles" :key="article.content_id">
         <el-card shadow="always" class="card">
-          <img :src="`${baseUrl2}${article.imageCover}`" alt="cover image" class="cover" />
+          <img
+            :src="`${baseUrl2}${article.imageCover}`"
+            alt="cover image"
+            class="cover"
+          />
           <div class="info">
             <p>
               <router-link :to="'/article/' + article.content_id" class="title">
@@ -11,8 +15,10 @@
               </router-link>
             </p>
             <p>{{ article.introduction }}</p>
-            <p>date：{{ article.pub_date }}</p>
-            <p>likes：{{ article.likeNumber }}</p>
+            <div>
+              <p>date：{{ article.pub_date }}</p>
+              <p>likes：{{ article.likeNumber }}</p>
+            </div>
           </div>
         </el-card>
       </el-col>
@@ -21,21 +27,18 @@
 </template>
 <script>
 import apiService from "@/components/utils/ApiService.js";
-import {baseUrl2} from "@/components/utils/ApiService.js";
+import { baseUrl2 } from "@/components/utils/ApiService.js";
 
 export default {
   name: "ArticleBox",
-  
 
   data() {
     return {
       articles: [],
-      baseUrl2:baseUrl2
+      baseUrl2: baseUrl2,
     };
   },
-  computed: {
-    
-  },
+  computed: {},
   methods: {
     async fetchArticles() {
       this.articles = await apiService.fetchArticles();
@@ -48,14 +51,14 @@ export default {
 </script>
 
 <style scoped>
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300;400;500;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300;400;500;700&display=swap");
 
 .container {
   max-width: 1200px;
   margin: 0 auto;
   padding: 20px;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
 }
 
 .cover {
@@ -87,7 +90,7 @@ export default {
 }
 
 .title {
-  font-family: 'Roboto Slab', serif;
+  font-family: "Roboto Slab", serif;
   font-size: 20px;
   font-weight: 500;
   color: #333;
@@ -114,4 +117,10 @@ export default {
   -webkit-box-orient: vertical;
 }
 
+/* .article-stats {
+  display: flex;
+
+  justify-content: space-between;
+  align-items: center;
+} */
 </style>

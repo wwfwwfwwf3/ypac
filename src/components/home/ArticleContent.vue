@@ -22,22 +22,35 @@
       />
     </div>
     <div class="actions">
-      <el-button icon="el-icon-thumb">Like</el-button>
-      <el-button icon="el-icon-warning">Report</el-button>
+      <button class="action-button like-button">
+        <svg viewBox="0 0 24 24" class="icon">
+          <path
+            d="M12 21.638h-.014C9.403 21.59 1.95 14.856 1.95 8.478c0-3.064 2.525-5.754 5.403-5.754 2.29 0 3.83 1.58 4.646 2.73.814-1.148 2.354-2.73 4.645-2.73 2.88 0 5.404 2.69 5.404 5.755 0 6.376-7.454 13.11-10.037 13.157H12zM7.354 4.225c-2.08 0-3.903 1.988-3.903 4.255 0 5.74 7.034 11.596 8.55 11.658 1.518-.062 8.55-5.917 8.55-11.658 0-2.267-1.823-4.255-3.903-4.255-2.528 0-3.94 2.936-3.952 2.965-.23.562-1.156.562-1.387 0-.014-.03-1.425-2.965-3.954-2.965z"
+          ></path>
+        </svg>
+        Like
+      </button>
+      <button class="action-button share-button">
+        <svg viewBox="0 0 24 24" class="icon">
+          <path
+            d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92 1.61 0 2.92-1.31 2.92-2.92s-1.31-2.92-2.92-2.92z"
+          ></path>
+        </svg>
+        Share
+      </button>
     </div>
 
     <div class="comments-section">
-      <h3>评论</h3>
+      <h3>Comment</h3>
       <el-input
         type="textarea"
         v-model="newComment"
-        placeholder="请输入您的评论"
+        placeholder="Input your comment"
         class="comment-input"
       ></el-input>
-      <el-button type="primary" @click="submitComment">提交评论</el-button>
+      <el-button type="primary" @click="submitComment">Submit Comment</el-button>
 
       <div class="user-comments">
-        <h3>网友评论</h3>
         <div v-for="comment in comments" :key="comment.id" class="comment">
           <div class="comment-avatar">
             <img
@@ -96,10 +109,6 @@ export default {
     },
     async fetchComments() {
       this.comments = this.article.comments;
-      console.log(
-        "comments=============",
-        JSON.parse(this.comments)[0].fields.text
-      );
     },
     async fetchData() {
       await this.fetchArticle();
@@ -152,8 +161,40 @@ export default {
   margin-bottom: 20px;
 }
 
-.actions .el-button {
+.action-button {
+  display: flex;
+  align-items: center;
+  background-color: transparent;
+  border: 1px solid #333;
+  border-radius: 5px;
+  padding: 8px 12px;
   margin-right: 10px;
+  font-size: 14px;
+  color: #333;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.action-button:hover {
+  background-color: #333;
+  color: #fff;
+}
+
+.icon {
+  width: 20px;
+  height: 20px;
+  margin-right: 5px;
+  fill: currentColor;
+}
+
+.like-button {
+  display: flex;
+  align-items: center;
+}
+
+.share-button {
+  display: flex;
+  align-items: center;
 }
 
 .comments-section {
@@ -171,7 +212,7 @@ export default {
 .comment {
   display: flex;
   align-items: flex-start;
-  background-color: #f5f5f5;
+  background-image: linear-gradient(120deg, #89f7fe 0%, #66a6ff 100%);
   padding: 15px;
   margin-bottom: 10px;
   border-radius: 5px;
@@ -217,5 +258,4 @@ export default {
 .date {
   font-style: italic;
 }
-
 </style>

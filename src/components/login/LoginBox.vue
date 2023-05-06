@@ -7,28 +7,26 @@
       label-position="top"
       class="login-form"
     >
-      <h3 class="login-title">登录</h3>
-      <el-form-item label="用户名" prop="username">
+      <h3 class="login-title">YPAC</h3>
+      <el-form-item label="username" prop="username">
         <el-input
           v-model="loginForm.username"
-          placeholder="请输入用户名"
+          placeholder="Input your username"
         ></el-input>
       </el-form-item>
-      <el-form-item label="密码" prop="password">
+      <el-form-item label="password" prop="password">
         <el-input
           v-model="loginForm.password"
           type="password"
-          placeholder="请输入密码"
+          placeholder="Input your password"
         ></el-input>
       </el-form-item>
       <el-form-item>
-        <el-checkbox v-model="loginForm.rememberMe">记住密码</el-checkbox>
         <hr />
-        <span class="forgot-password">忘记密码？</span>
       </el-form-item>
       <el-form-item>
         <el-button type="primary" @click="submitForm('loginForm')"
-          >登录</el-button
+          >Login</el-button
         >
       </el-form-item>
     </el-form>
@@ -46,13 +44,12 @@ export default {
       loginForm: {
         username: "",
         password: "",
-        // rememberMe: false,
       },
       rules: {
         username: [
-          { required: true, message: "请输入用户名", trigger: "blur" },
+          { required: true, message: "*Please input your username!", trigger: "blur" },
         ],
-        password: [{ required: true, message: "请输入密码", trigger: "blur" }],
+        password: [{ required: true, message: "*Please input your password!", trigger: "blur" }],
       },
     };
   },
@@ -86,6 +83,7 @@ export default {
   justify-content: center;
   align-items: center;
   height: 100vh;
+  
 }
 
 .login-form {
@@ -93,6 +91,7 @@ export default {
   border: 1px solid #eee;
   border-radius: 5px;
   padding: 20px;
+  background-image: linear-gradient(120deg, #89f7fe 0%, #66a6ff 100%);
 }
 
 .login-title {
