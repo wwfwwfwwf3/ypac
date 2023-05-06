@@ -3,11 +3,12 @@
     <h2>{{ article.title }}</h2>
     <video v-if="article.video" :src="article.video" controls></video>
     <div v-html="article.text"></div>
+    <img :src="`${ baseUrl2 }/media/${ article.payCode }`" alt="cover image" class="cover" height="400" width="300"/>
     <div>
-      <el-button icon="el-icon-thumb"> 点赞</el-button>
-      <el-button icon="el-icon-share"> 分享</el-button>
-      <el-button icon="el-icon-gift">打赏</el-button>
+      <el-button> like</el-button>
+      <el-button> report</el-button>
     </div>
+
     <div>
       <h3>评论</h3>
       <el-input
@@ -28,7 +29,7 @@
 <script> 
 import axios from "axios";
 import apiService from "@/components/utils/ApiService.js";
-
+import {baseUrl2} from "@/components/utils/ApiService.js";
 
 export default {
   
@@ -37,7 +38,8 @@ export default {
     return {
       article: {},
       newComment: '',
-      comments: []
+      comments: [],
+      baseUrl2:baseUrl2,
     };
   },
   methods: {

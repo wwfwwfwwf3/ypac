@@ -10,7 +10,7 @@
         </el-form-item>
         <el-form-item label="Summary">
           <el-input
-            v-model="formData.summary"
+            v-model="formData.introduction"
             type="textarea"
             maxlength="1000px"
             show-word-limit
@@ -26,24 +26,21 @@
           >
             <el-button type="primary">Image Upload</el-button>
           </el-upload>
-          <img v-if="formData.cover" :src="formData.cover" alt="封面图片" />
+          <img v-if="formData.imageCover" :src="formData.imageCover" alt="封面图片" />
         </el-form-item>
         <el-form-item label="Editor">
           <ckeditor
-            v-model="formData.content"
+            v-model="formData.text"
             :editor="editor"
             :config="editorConfig"
             @ready="onReady"
           ></ckeditor>
         </el-form-item>
-        <el-form-item label="video">
-          <el-upload
-            action="/api/upload/video"
-            accept="video/*"
-            :on-success="handleVideoUploadSuccess"
-          >
-            <el-button type="primary">Video Upload</el-button>
-          </el-upload>
+        <el-form-item label="Video URL">
+          <el-input
+            v-model="formData.video"
+            placeholder="Input the video URL"
+          ></el-input>
         </el-form-item>
         <el-form-item>
           <el-button type="primary" @click="onSubmit">Submit</el-button>
@@ -56,7 +53,8 @@
 <script>
 import { CKEditor } from "@ckeditor/ckeditor5-vue";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
-import axios from "axios";
+// import axios from "axios";
+import apiService from "@/components/utils/ApiService.js";
 
 export default {
   name: "UploadBox",
@@ -64,10 +62,11 @@ export default {
     return {
       formData: {
         title: "",
-        summary: "",
-        cover: "",
-        content: "",
-        videoUrl: "",
+        introduction: "",
+        text: "",
+        video: "",
+        association: "",
+        status: "1",
       },
       editor: ClassicEditor,
       editorConfig: {
@@ -77,19 +76,13 @@ export default {
   },
   methods: {
     async onSubmit() {
-      try {
-        var address = "http://localhost:3001/uploadEvent";
-        const response = await axios.post(address, this.formData);
-        if (response.status === 200 || response.status === 201) {
-          this.$message.success("活动已成功提交");
-          this.resetForm();
-        } else {
-          this.$message.error("提交失败，请稍后重试");
-          console.error("response.status==" + response.status);
-        }
-      } catch (error) {
-        console.error("Error:", error);
-        this.$message.error("提交失败，请稍后重试");
+      this.formData.association = this.$root.loggedInUsername;
+      const result = await apiService.submitArticle(this.formData);
+      if (result.success) {
+        this.$message.success("活动已成功提交");
+        this.resetForm();
+      } else {
+        this.$message.error(result.error);
       }
     },
     resetForm() {
@@ -99,6 +92,7 @@ export default {
         cover: "",
         content: "",
         videoUrl: "",
+        status: "1",
       };
     },
     handleUploadSuccess(response, file) {

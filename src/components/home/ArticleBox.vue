@@ -3,7 +3,7 @@
     <el-row gutter="20">
       <el-col :span="8" v-for="article in articles" :key="article.content_id">
         <el-card :body-style="{ padding: '0' }">
-          <img :src="'http://172.20.10.2:8000'+article.imageCover" alt="cover image" class="cover" />
+          <img :src="`${baseUrl2}${article.imageCover}`" alt="cover image" class="cover" />
           <div class="info">
             <p>
               <router-link :to="'/article/' + article.content_id">
@@ -21,13 +21,20 @@
 </template>
 <script>
 import apiService from "@/components/utils/ApiService.js";
+import {baseUrl2} from "@/components/utils/ApiService.js";
 
 export default {
   name: "ArticleBox",
+  
+
   data() {
     return {
       articles: [],
+      baseUrl2:baseUrl2
     };
+  },
+  computed: {
+    
   },
   methods: {
     async fetchArticles() {
@@ -37,7 +44,6 @@ export default {
   mounted() {
     this.fetchArticles();
   },
-  computed: {},
 };
 </script>
 
