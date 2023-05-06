@@ -3,6 +3,10 @@
     <div class="article-header">
       <h2>{{ article.title }}</h2>
     </div>
+    <div class="article-meta">
+      <span class="author">{{ article.author }}</span> |
+      <span class="date">{{ article.pub_date }}</span>
+    </div>
     <div class="article-content">
       <video
         v-if="article.video"
@@ -35,10 +39,19 @@
       <div class="user-comments">
         <h3>网友评论</h3>
         <div v-for="comment in comments" :key="comment.id" class="comment">
-          <p>
-            <span class="username">{{ comment.username }}</span
-            >: {{ comment.content }}
-          </p>
+          <div class="comment-avatar">
+            <img
+              src="https://avatars.githubusercontent.com/u/583231?v=4"
+              alt="avatar"
+              class="avatar"
+            />
+          </div>
+          <div class="comment-content">
+            <p>
+              <span class="username">{{ comment.fields.user }}</span
+              ><br />{{ comment.fields.text }}
+            </p>
+          </div>
         </div>
       </div>
     </div>
@@ -82,7 +95,11 @@ export default {
       console.log("article=============", this.article);
     },
     async fetchComments() {
-      this.comments = await apiService.fetchComments(this.$route.params.id);
+      this.comments = this.article.comments;
+      console.log(
+        "comments=============",
+        JSON.parse(this.comments)[0].fields.text
+      );
     },
     async fetchData() {
       await this.fetchArticle();
@@ -152,13 +169,53 @@ export default {
 }
 
 .comment {
-  padding: 10px;
+  display: flex;
+  align-items: flex-start;
   background-color: #f5f5f5;
+  padding: 15px;
   margin-bottom: 10px;
   border-radius: 5px;
 }
 
+.comment-avatar {
+  flex-shrink: 0;
+  margin-right: 15px;
+}
+
+.avatar {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.comment-content {
+  flex-grow: 1;
+}
+
 .username {
   font-weight: bold;
+  color: #333;
 }
+
+.comment-content p {
+  margin: 0;
+  color: #555;
+}
+
+.article-meta {
+  margin-bottom: 10px;
+  font-size: 14px;
+  color: #555;
+}
+
+.author {
+  font-weight: 500;
+  color: #333;
+}
+
+.date {
+  font-style: italic;
+}
+
 </style>

@@ -3,13 +3,13 @@
     <el-carousel type="card" height="200px" width="80%">
       
       <el-carousel-item>
-        <img src="https://via.placeholder.com/800x200" alt="slide1" />
+        <img src="https://img1.baidu.com/it/u=3632688648,2518551699&fm=253&fmt=auto&app=138&f=GIF?w=800&h=200" alt="slide1" />
       </el-carousel-item>
       <el-carousel-item>
-        <img src="https://via.placeholder.com/800x200" alt="slide2" />
+        <img src="https://img2.baidu.com/it/u=1481630677,2258820518&fm=253&fmt=auto&app=138&f=GIF?w=800&h=200" alt="slide2" />
       </el-carousel-item>
       <el-carousel-item>
-        <img src="https://via.placeholder.com/800x200" alt="slide3" />
+        <img src="https://img1.baidu.com/it/u=418183704,3260596992&fm=253&fmt=auto&app=120&f=GIF?w=800&h=200" alt="slide3" />
       </el-carousel-item>
     </el-carousel>
   </div>
@@ -24,16 +24,7 @@ export default {
   },
   methods: {},
   computed: {},
-  // mounted() {
-  //   this.getSlideList();
-  // },
-  // getSlideList () {
-  //   axios.get('/api/slides')
-  //     .then(res => {
-  //       this.slideList = res.data;
-  //     })
-  //     .catch(err => console.log(err));
-  // },
+  
 };
 </script>
 

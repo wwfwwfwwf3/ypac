@@ -6,7 +6,7 @@
           <img :src="`${baseUrl2}${article.imageCover}`" alt="cover image" class="cover" />
           <div class="info">
             <p>
-              <router-link :to="'/article/' + article.content_id">
+              <router-link :to="'/article/' + article.content_id" class="title">
                 {{ article.title }}
               </router-link>
             </p>
@@ -48,10 +48,14 @@ export default {
 </script>
 
 <style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300;400;500;700&display=swap');
+
 .container {
   max-width: 1200px;
   margin: 0 auto;
   padding: 20px;
+  font-family: 'Roboto', sans-serif;
 }
 
 .cover {
@@ -66,21 +70,32 @@ export default {
   border-radius: 5px;
   overflow: hidden;
   transition: transform 0.3s ease;
+  height: 400px; /* Added fixed height */
 }
 
 .card:hover {
   transform: translateY(-10px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
 }
 
 .info {
   padding: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
 }
 
-.info h3 {
-  margin: 0 0 15px;
+.title {
+  font-family: 'Roboto Slab', serif;
   font-size: 20px;
   font-weight: 500;
   color: #333;
+  text-decoration: none;
+}
+
+.title:hover {
+  text-decoration: underline;
 }
 
 .info p {
@@ -88,11 +103,15 @@ export default {
   color: #555;
 }
 
-router-link {
-  text-decoration: none;
+.info p:nth-child(2) {
+  font-size: 14px;
+  color: #777;
+  height: 40px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
 }
 
-router-link:hover {
-  text-decoration: underline;
-}
 </style>
