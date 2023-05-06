@@ -1,8 +1,8 @@
 <template>
-  <div>
+  <div class="container">
     <el-row gutter="20">
       <el-col :span="8" v-for="article in articles" :key="article.content_id">
-        <el-card :body-style="{ padding: '0' }">
+        <el-card shadow="always" class="card">
           <img :src="`${baseUrl2}${article.imageCover}`" alt="cover image" class="cover" />
           <div class="info">
             <p>
@@ -48,18 +48,51 @@ export default {
 </script>
 
 <style scoped>
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
 .cover {
   width: 100%;
   height: 200px;
   object-fit: cover;
+  border-radius: 5px 5px 0 0;
 }
+
+.card {
+  margin-bottom: 20px;
+  border-radius: 5px;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-10px);
+}
+
 .info {
   padding: 15px;
 }
+
 .info h3 {
   margin: 0 0 15px;
+  font-size: 20px;
+  font-weight: 500;
+  color: #333;
 }
+
 .info p {
   margin: 0 0 10px;
+  color: #555;
+}
+
+router-link {
+  text-decoration: none;
+}
+
+router-link:hover {
+  text-decoration: underline;
 }
 </style>

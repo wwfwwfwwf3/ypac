@@ -50,6 +50,7 @@ class ApiService {
             "content_id": id
           });
           // const response = await axios.get(address);
+          
           console.log("fetchArticle===============================",response.data,'\n');
           return response.data;
         } catch (error) {
@@ -58,9 +59,13 @@ class ApiService {
       }
 
       async fetchComments(articleId) {
-        const address = baseUrl1+`/articles/${articleId}/comments`;
+        // const address = baseUrl1+`/articles/${articleId}/comments`;
+        const address=baseUrl2+`/cms/ypac/comment_list/`
         try {
-          const response = await axios.get(address);
+          // const response = await axios.get(address);
+          const response = await axios.post(address, {
+            "content_id": articleId
+          });
           return response.data;
         } catch (error) {
           console.error("Error fetching comments:", error);
