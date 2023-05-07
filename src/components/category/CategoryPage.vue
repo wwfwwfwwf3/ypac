@@ -1,3 +1,4 @@
+<!-- CategoryPage.vue -->
 <template>
   <div>
     <choose-box></choose-box>

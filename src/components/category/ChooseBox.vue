@@ -1,3 +1,4 @@
+<!--ChooseBox.vue-->
 <template>
   <div class="container1">
     <el-card class="container2">
