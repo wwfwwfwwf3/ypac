@@ -96,6 +96,11 @@ export default {
         await apiService.submitComment(commentData);
         this.fetchComments();
         this.newComment = "";
+        this.$message({
+          message: "Comment submitted successfully!",
+          type: "success",
+        });
+        window.location.reload();
       } catch (error) {
         console.error("Error submitting comment:", error);
         this.$message({
