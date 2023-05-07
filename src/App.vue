@@ -38,20 +38,24 @@ export default {
 
     setLoggedInUser(user) {
       this.loggedInUser = user;
+      this.$root.loggedInUsername = user.username;
+      this.$root.userType = user.userType;
+
+      console.log("userType====================", user.userType);
       localStorage.setItem("loggedInUser", JSON.stringify(user));
     },
   },
 
   computed: {
     loggedInUsername() {
-      return this.loggedInUser ? this.loggedInUser.username : "";
+      return this.loggedInUser?.username || null;
     },
   },
 
   mounted() {
     const loggedInUser = localStorage.getItem("loggedInUser");
     if (loggedInUser) {
-      this.loggedInUser = JSON.parse(loggedInUser);
+      this.setLoggedInUser(JSON.parse(loggedInUser));
     }
   },
 };
@@ -60,6 +64,6 @@ export default {
 <style>
 #app {
   width: 100%;
-  background-image: linear-gradient(-225deg, #FFFEFF 0%, #D7FFFE 100%);
+  background-image: linear-gradient(-225deg, #fffeff 0%, #d7fffe 100%);
 }
 </style>

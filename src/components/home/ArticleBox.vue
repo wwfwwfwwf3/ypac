@@ -109,13 +109,11 @@ export default {
 .info p:nth-child(2) {
   font-size: 14px;
   color: #777;
-  height: 40px;
+  white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
 }
+
 
 /* .article-stats {
   display: flex;

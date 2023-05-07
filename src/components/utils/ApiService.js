@@ -2,7 +2,7 @@
 import axios from "axios";
 
 export const baseUrl1 = 'http://localhost:3000';
-export const baseUrl2 = 'http://192.168.0.105:8000';
+export const baseUrl2 = 'http://172.20.10.2:8000';
 
 class ApiService {
     constructor() {
@@ -27,7 +27,7 @@ class ApiService {
     }
 
     async login(credentials) {
-      const address = baseUrl2+"/cms/ypac/association_login/";
+      const address = baseUrl2+"/cms/ypac/user_login/";
         try {
           const response = await axios.post(address, credentials);
           console.log("LoginInfo=====================",response.data,'\n');
@@ -88,6 +88,21 @@ class ApiService {
           return { success: false, error: "提交失败，请稍后重试" };
         }
       }
+
+      async submitComment(commentData) {
+        const address = baseUrl2 + `/cms/ypac/comment_content/`;
+        try {
+          const response = await axios.post(address, {
+            content_id: commentData.content_id,
+            username: commentData.username,
+            text: commentData.text,
+          });
+          return response.data;
+        } catch (error) {
+          console.error("Error submitting comment:", error);
+        }
+      }
+
 }
 
 const apiService = new ApiService();
